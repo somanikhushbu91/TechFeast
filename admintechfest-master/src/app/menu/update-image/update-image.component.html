@@ -1,0 +1,57 @@
+<form [formGroup]="updatemenupic" (ngSubmit)="onmenuimageupdate()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Update Menu Image</h3>
+      </div>
+    </div>
+  <!-- <img mat-card-image src="{{menuurl}}" style="height: 150px;width: 250px;">
+  <input type="file" name="pic" (change)="onChange($event)"><br><br>
+<button type="submit" mat-button color="primary">UPDATE</button>
+<button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary">Cancle</button> -->
+</div>
+
+<div class="container">
+  <mat-label></mat-label>
+
+    <div class="row">
+      <div class="col-md-3">
+        <img src="{{menuurl}}" height="100px:" width="100px">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6 col-sm-7">
+
+        <div class="form-control">
+          <input type="file" (change)="onChange($event)" formControlName="pic">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="rows">
+    <div class="col-md-2 col-sm-2"></div>
+    <div class="col-md-3 col-sm-3">
+      <button class="example-full-width" type="submit" mat-raised-button color="primary"
+      style="border-radius: 20px;background-color:purple">Update</button>
+    </div>
+    <div class="col-md-1 col-sm-2"></div>
+    <div class="col-md-3 col-sm-3">
+      <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary"
+      style="border-radius: 20px;background-color:green;">Cancel</button>
+    </div>
+</div> -->
+<div class="row">
+  <div class="col-md-2 col-sm-2"></div>
+  <div class="col-md-3 col-sm-3" style="margin-top: 2%;">
+    <button type="submit" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:#4169E1;"><b>Save</b></button>
+  </div>
+  <div class="col-md-1 col-sm-2"></div>
+  <div class="col-md-3 col-sm-3" style="margin-top: 2%;">
+    <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: #00FFFF;"><b>Cancel</b></button>
+  </div>
+</div>
+
+</form>

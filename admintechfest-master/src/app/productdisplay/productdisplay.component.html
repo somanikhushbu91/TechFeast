@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <th>Product Id</th>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Product Color</th>
+    <th>Manufactured By</th>
+    <th>Image</th>
+    <th>Quantity</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of prodata">
+    <td>{{item.pro_id}}</td>
+    <td>{{item.pro_name}}</td>
+    <td>{{item.pro_price}}</td>
+    <td>{{item.pro_color}}</td>
+    <td>{{item.pro_mfg}}</td>
+    <td [ngClass]="{less: item.soh<=10 ,greater: item.soh>10}">{{item.pro_soh}}</td>
+    <td><img src="http://localhost:3000/images/product_photos/{{item.img}}" height="50" weight="50"></td>
+    <td>{{item.cat_name}}</td>
+    </tr>
+  </tbody>
+</table>
+<button mat-button color="warm" (click)="addData()">+ Add Record</button>

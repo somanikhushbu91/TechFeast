@@ -1,0 +1,30 @@
+/*styling the controls of basic carousel */
+.carousel-control {
+    /*size */
+    height: 50px;
+    width: 50px;
+    /*symbol */
+    color: #fff;
+    /*vertical position */
+    top: 50%;
+}
+
+/*styling the controls of basic carousel */
+/* .carousel-control { */
+  /*size */
+  /* height: 50px;
+  width: 50px; */
+  /*color */
+  /* background: #1b1b1b none repeat scroll 0 0;
+  opacity: 0.5; */
+  /*shape border*/
+  /* border: 0 none;
+  border-radius: 50%; zero for square */
+  /*symbol */
+  /* color: #fff;
+  line-height: 70px; */
+  /*vertical position */
+  /* top: 50%;
+} */
+
+

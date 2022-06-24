@@ -1,0 +1,141 @@
+<app-header></app-header><br><br><br>
+<!-- Begin Munoz's Checkout Area -->
+<div class="checkout-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <div class="coupon-accordion">
+                  <h3>FeedBack :- <a data-toggle="collapse" #closeFeedback href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Click here to provide the FeedBack</a></h3>
+                  <div class="collapse" id="collapseExample">
+                      <div class="coupon-info">
+                          <p class="coupon-text">This Information only taken by us to provide the Information of the programs.</p>
+                          <form [formGroup]="feedbackFrom" (ngSubmit)="onCustomerData(f)" #f="ngForm" >
+                              <p class="form-row-first">
+                                  <mat-form-field class="example-full-width">
+                                  <mat-label>Name </mat-label>
+                                    <input formControlName="Name" matInput placeholder="Enter Your Name Here" type="text">
+                                    <mat-label *ngIf="feedbackFrom.get('Name').hasError('required') && !feedbackFrom.get('Name').pristine ">Name
+                                      should not be empty</mat-label>
+                                    <mat-label *ngIf="feedbackFrom.get('Name').hasError('pattern') && !feedbackFrom.get('Name').pristine ">Name
+                                      only allows character</mat-label>
+                                    <mat-label *ngIf="feedbackFrom.get('Name').hasError('minlength') && !feedbackFrom.get('Name').pristine ">Name
+                                      should containing minimum length of 3</mat-label>
+                                  </mat-form-field>
+                                  <mat-form-field class="example-full-width">
+                                    <mat-label>Mobile No </mat-label>
+                                      <input formControlName="Mobile_no" matInput placeholder="Enter Your Mobile Number Here" type="number">
+                                      <mat-label *ngIf="feedbackFrom.get('Mobile_no').hasError('required') && !feedbackFrom.get('Mobile_no').pristine ">Mobile NO
+                                        should not be empty</mat-label>
+                                      <mat-label *ngIf="feedbackFrom.get('Mobile_no').hasError('pattern') && !feedbackFrom.get('Mobile_no').pristine ">Mobile NO
+                                        only allows character</mat-label>
+                                      <mat-label *ngIf="feedbackFrom.get('Mobile_no').hasError('minlength') && !feedbackFrom.get('Mobile_no').pristine ">Mobile No
+                                        Should Not minimum Greater Than 10</mat-label>
+                                    </mat-form-field>
+                                  <mat-form-field class="example-full-width">
+                                    <mat-label>Leave a comment</mat-label>
+                                    <textarea formControlName="feedback" matInput  placeholder="Please Provide the FeedBack"></textarea>
+                                    <mat-label *ngIf="feedbackFrom.get('feedback').hasError('required') && !feedbackFrom.get('feedback').pristine ">Mobile NO
+                                      should not be empty</mat-label>
+                                  </mat-form-field>
+                                  <button type="submit" class="btn btn-outline-success example example-full-width" [disabled]="!f.valid">Submit</button>
+                                  <!-- <button class="example-full-width" type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Submit</button> -->
+                              </p>
+                          </form>
+                      </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-12">
+              <form action="javascript:void(0)">
+                  <div class="checkbox-form">
+                      <h3>Order Detail</h3>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="myniceselect country-select">
+                                  <label>Table NO :-</label>
+                                  <select class="nice-select wide" [(ngModel)]="table_no" name="table">
+                                      <option *ngFor="let item of tablearr">{{item}}</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="different-address">
+                          <div class="order-notes">
+                              <div class="checkout-form-list checkout-form-list-2">
+                                  <label>Order Notes</label>
+                                  <textarea [(ngModel)]="specialInstruction" name="special" id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="col-lg-6 col-12">
+              <div class="your-order">
+                  <h3>Your order</h3>
+                  <div class="your-order-table table-responsive">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th class="cart-product-name">Product</th>
+                                  <th class="cart-product-total">Total</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr class="cart_item" *ngFor="let item of arrcartItem">
+                                  <td class="cart-product-name">{{item.menuItem.name}}<strong class="product-quantity">
+                                  × {{item.Quantity}}</strong></td>
+                                  <td class="cart-product-total"><span class="amount">{{item.SubTotal | currency:'INR'}}</span></td>
+                              </tr>
+                          </tbody>
+                          <tfoot>
+                              <tr class="order-total">
+                                  <th>Order Total</th>
+                                  <td><strong><span class="amount">{{GrandTotal | currency:'INR'}}</span></strong></td>
+                              </tr>
+                              <tr class="order-total">
+                                <th>Gst(5%)</th>
+                                <td><strong><span class="amount">{{Gst | currency:'INR'}}</span></strong></td>
+                              </tr>
+                              <tr class="order-total">
+                                <th>Final Total</th>
+                                <td><strong><span class="amount">{{finalAmount | currency:'INR'}}</span></strong></td>
+                              </tr>
+                          </tfoot>
+
+                      </table>
+                  </div>
+                  <div class="payment-method">
+                      <div class="payment-accordion">
+                          <div id="accordion">
+                              <div class="card">
+                                  <div class="card-header" id="#payment-3">
+                                      <h5 class="panel-title">
+                                          <a href="javascript:void(0)" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                              Payment Type :-
+                                          </a>
+                                      </h5>
+                                  </div>
+                                  <div>
+                                      <div class="card-body" *ngFor="let item of payment">
+                                          <input type="radio" [(ngModel)]="payment_type" name="p1" [value]="item"> {{item}}<br>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="order-button-payment">
+                              <input value="Place order" type="submit" (click)="onPlaceOrder()">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+

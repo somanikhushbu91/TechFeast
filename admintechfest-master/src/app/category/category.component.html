@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="rows">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="text-align: center; font-size: 25px;">Category Management</div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="rows">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+        <button mat-flat-button color="primary" (click)="onAddRecord()" style="font-size: 20px; background-color:#4169E1; border-radius: 20px;">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>      Add New Category
+          </button>
+
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<!-- <button mat-raised-button color="primary" style=" margin-right: 1.0em"  (click)="onAddRecord()">+ Add Category</button> -->
+<!-- <button mat-raised-button color="primary"(click)="onDeleteAllClick()"  >Delete All</button> -->
+
+<div class="container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Category">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort multiTemplateDataRows>
+
+    <ng-container matColumnDef="cat_id">
+      <th mat-header-cell *matHeaderCellDef > ALL</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (change)="onCheckBoxChange(row)" color="warn"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cat_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORY NAME </th>
+      <td mat-cell *matCellDef="let row"> {{row.cat_name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Image">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> IMAGE</th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> <img src="http://localhost:3000/images/category_images/{{row.Image}}" height="50" weight="50"> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-mini-fab color="basic" (click)="onEdit(row)">
+          <mat-icon aria-label="Example icon-button with a heart icon">create</mat-icon>
+        </button>&nbsp;&nbsp;
+        <button mat-mini-fab color="primary" (click)="onDelete(row)">
+          <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5,10, 25, 50, 100]"></mat-paginator>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-5">
+      <button mat-raised-button style="font-size: 20px; background-color: #4169E1;" [disabled]="del_arr.length==0" (click)="onDeleteAllClick()">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+      </button>
+    </div>
+  </div>
+</div>

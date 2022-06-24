@@ -1,0 +1,64 @@
+<form [formGroup]="addcategoryform" (ngSubmit)="onCategoryAdd(f)" #f="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>New Category</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h5 style="color: red;">* Means the field is mandatary.</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <!-- <input name="CategoryNAME" matInput placeholder="Category Name" value="" [(ngModel)]="catname" spellcheck="false" autocomplete="off"> -->
+          <input formControlName="cat_name" matInput type="text" required placeholder="Category Name" spellcheck="false"
+            autocomplete="off">
+          <mat-label
+            *ngIf="addcategoryform.get('cat_name').hasError('required') && !addcategoryform.get('cat_name').pristine ">
+            Category name
+            is required.</mat-label>
+          <mat-label
+            *ngIf="addcategoryform.get('cat_name').hasError('pattern') && !addcategoryform.get('cat_name').pristine ">
+            Category name
+            allows character</mat-label>
+          <mat-label
+            *ngIf="addcategoryform.get('cat_name').hasError('minlength') && !addcategoryform.get('cat_name').pristine ">
+            Category name
+            should have minimum 3 characters.</mat-label>
+
+        </mat-form-field>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-7">
+            <mat-label>Category image:</mat-label>
+            <div class="form-control">
+              <input type="file" name="Image" (change)="onChange($event)" style="font-family: sans-serif;"
+                accept=".png, .jpg, .jpeg" placeholder="Add Picture" required><br>
+              <img *ngFor="let item of base64textString" height="100px" width="100px" style="font-family: sans-serif;"
+                src={{item}} alt="" id="img">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 col-sm-2"></div>
+        <div class="col-md-3 col-sm-3" style="margin-top: 10%;">
+          <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control"
+            style="border-radius: 20px;background-color:#4169E1;"><b>Save</b></button>
+        </div>
+        <div class="col-md-1 col-sm-2"></div>
+        <div class="col-md-3 col-sm-3" style="margin-top: 10%;">
+          <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()"
+            style="border-radius: 20px;background-color: #00FFFF;"><b>Cancel</b></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

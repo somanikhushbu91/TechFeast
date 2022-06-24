@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="rows">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="text-align: center; font-size: 25px;">Order Management</div>
+  </div>
+  <br>
+  <br>
+  <br>
+  </div>
+<!-- <button mat-raised-button color="primary" (click)="onDeleteAllClick()"  >Delete All</button> -->
+<div class="container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Order">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort multiTemplateDataRows>
+
+    <ng-container matColumnDef="order_id">
+      <th mat-header-cell *matHeaderCellDef >ALL</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (change)="onCheckBoxChange(row)" color="warn"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="table_no">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> TABLE NO </th>
+      <td mat-cell *matCellDef="let row"> {{row.table_no}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
+      <td mat-cell *matCellDef="let row"> {{row.date | slice : 0 : 10}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="order_amt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> AMOUNT </th>
+      <td mat-cell *matCellDef="let row"> {{row.order_amt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="payment_type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Type </th>
+      <td mat-cell *matCellDef="let row"> {{row.payment_type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="is_paid">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
+      <td mat-cell *matCellDef="let row"> {{row.is_paid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ORDER STATUS </th>
+      <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> ACTION </th>
+      <td mat-cell *matCellDef="let row">
+        <button (click)="onDelete(row)" mat-mini-fab color="primary" >
+          <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+        </button>&nbsp;&nbsp;
+        <button mat-mini-fab color="basic" (click)="onCashPayment(row)" [disabled]="(row.is_paid=='Yes' || row.payment_type=='card' || row.payment_type=='other')">
+          <mat-icon aria-label="Example icon-button with a heart icon">done</mat-icon>
+        </button>&nbsp;&nbsp;
+        <button (click)="onView(row)" mat-mini-fab color="primary">
+          <mat-icon aria-label="Example icon-button with a heart icon">more</mat-icon>
+        </button>&nbsp;&nbsp;
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[ 5,10, 25, 50, 100]"></mat-paginator>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-5">
+      <button mat-raised-button style="font-size: 20px; background-color: #4169E1;" [disabled]="del_arr.length==0" (click)="onDeleteAllClick()">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+      </button>
+    </div>
+  </div>
+</div>

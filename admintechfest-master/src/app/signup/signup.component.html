@@ -1,0 +1,82 @@
+<form [formGroup]="signupform" (ngSubmit)="onEmployeesignup()">
+
+  <mat-form-field class="example-full-width">
+    <input formControlName="email_id" matInput type="email" placeholder="Enter Email">
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-label *ngIf="signupform.get('email_id').hasError('required') && !signupform.get('email_id').pristine ">Email
+      should not be empty</mat-label>
+    <mat-label *ngIf="signupform.get('email_id').hasError('email') && !signupform.get('email_id').pristine ">Invalid
+      Email</mat-label>
+  </mat-form-field>
+
+<div formGroupName="password_group" class="form-group">
+  <mat-form-field class="example-full-width">
+    <input formControlName="password" matInput type="password" placeholder="Enter password">
+    <mat-icon matSuffix>passsword</mat-icon>
+    <mat-label *ngIf="signupform.get('password_group').get('password').hasError('required') && !signupform.get('password_group').get('password').pristine ">Email
+      should not be empty</mat-label>
+    <mat-label *ngIf="signupform.get('password_group').get('password').hasError('minlength') && !signupform.get('password_group').get('password').pristine ">Email
+      should not be < 8</mat-label>
+    <mat-label *ngIf="signupform.get('password_group').get('password').hasError('maxlength') && !signupform.get('password_group').get('password').pristine ">Email
+      should not be > 8</mat-label>
+  </mat-form-field><br>
+
+  <mat-form-field class="example-full-width">
+    <input formControlName="confirm_password" matInput type="password" placeholder="Enter password">
+    <mat-icon matSuffix>passsword</mat-icon>
+    <mat-label *ngIf="signupform.get('password_group').get('confirm_password').hasError('required') && !signupform.get('password_group').get('confirm_password').pristine ">Email
+      should not be empty</mat-label>
+    <mat-label *ngIf="signupform.get('password_group').get('confirm_password').hasError('minlength') && !signupform.get('password_group').get('confirm_password').pristine ">Email
+      should not be < 8</mat-label>
+    <mat-label *ngIf="signupform.get('password_group').get('confirm_password').hasError('maxlength') && !signupform.get('password_group').get('confirm_password').pristine ">Email
+      should not be > 8</mat-label>
+
+      <mat-label *ngIf="signupform.get('password_group').hasError('sarkhanathi') && !signupform.get('password_group').pristine ">
+        Both password and confirm password should be same.</mat-label>
+
+
+  </mat-form-field>
+</div>
+
+<mat-form-field class="example-full-width">
+    <input formControlName="name" matInput type="text" placeholder="Enter Name">
+    <mat-icon matSuffix>person_outline</mat-icon>
+    <mat-label *ngIf="signupform.get('name').hasError('required') && !signupform.get('name').pristine ">Name
+      should not be empty</mat-label>
+    <mat-label *ngIf="signupform.get('name').hasError('minlength') && !signupform.get('name').pristine ">name
+      should not be > 5</mat-label>
+    <mat-label *ngIf="signupform.get('name').hasError('pattern') && !signupform.get('name').pristine ">name
+      should be in proper formet</mat-label>
+  </mat-form-field><br>
+
+
+  <mat-form-field class="example-full-width">
+    <span matPrefix>+91 &nbsp;</span>
+    <input formControlName="mobile_no" type="number" matInput appPhone placeholder="Enter Mobile Number">
+    <mat-icon matSuffix>phone</mat-icon>
+  </mat-form-field><br>
+
+  <mat-form-field class="example-full-width">
+    <input formControlName="dob" matInput type="date" placeholder="Enter Date Of Birth">
+  </mat-form-field><br>
+
+
+  <mat-form-field class="example-full-width">
+    <input formControlName="address" matInput type="text" placeholder="Enter Your Address">
+  </mat-form-field><br>
+
+  <mat-form-field class="example-full-width">
+    <input formControlName="joining_date"  matInput type="date" placeholder="Enter Date Of joining">
+  </mat-form-field><br>
+
+
+
+    <!-- <select formControlName="employee_type"  matInput type="text" placeholder="Enter Employee_type">
+      <option selected>Admin</option>
+      <option>Kitchen Chef</option>
+    </select> -->
+
+
+<button class="example-full-width" type="submit" mat-raised-button color="primary">Add User</button>
+
+</form>

@@ -1,0 +1,63 @@
+<div class="offcanvas-minicart_wrapper" id="miniCart">
+  <div class="offcanvas-menu-inner">
+    <a href="#" class="btn-close"><i class="ion-android-close"></i></a>
+    <div class="minicart-content">
+      <div class="minicart-heading">
+        <h4>Shopping Cart</h4>
+      </div>
+      <ul class="minicart-list">
+        <li class="minicart-product">
+          <a class="product-item_remove" href="javascript:void(0)"><i class="ion-android-close"></i></a>
+          <div class="product-item_img">
+            <img src="assets/images/product/small-size/3.jpg" alt="Munoz's Product Image">
+          </div>
+          <div class="product-item_content">
+            <a class="product-item_title" href="shop-left-sidebar.html">Pizza</a>
+            <span class="product-item_quantity">1 x $80.00</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="minicart-item_total">
+      <span>Subtotal</span>
+      <span class="ammount">$225.00</span>
+    </div>
+    <div class="minicart-btn_area">
+      <a href="cart.html" class="munoz-btn munoz-btn_dark munoz-btn_fullwidth">Minicart</a>
+    </div>
+    <div class="minicart-btn_area">
+      <a href="checkout.html" class="munoz-btn munoz-btn_dark munoz-btn_fullwidth">Checkout</a>
+    </div>
+  </div>
+</div>
+<!-- <div class="offcanvas-menu-inner">
+      <a class="btn-close"><i class="ion-android-close"></i></a>
+      <div class="minicart-content">
+          <div class="minicart-heading">
+              <h4>Shopping Cart</h4>
+          </div>
+          <ul class="minicart-list" >
+              <li class="minicart-product" *ngFor="let item of arrcartItem ; let i=index">
+                  <a class="product-item_remove" (click)="onRemoveFromCart(item.menuItem.menu_id,i)"><i class="ion-android-close"></i></a>
+                  <div class="product-item_img">
+                      <img src="http://localhost:3000/images/menu_images/{{item.menuItem.pic}}" >
+                  </div>
+                  <div class="product-item_content">
+                      <a class="product-item_title" href="shop-left-sidebar.html">{{item.menuItem.name}}</a>
+                      <span class="product-item_quantity">{{item.Quantity}} x {{item.menuItem.price | currency : 'INR'}}</span>
+                  </div>
+              </li>
+          </ul>
+      </div>
+      <div class="minicart-item_total">
+          <span>Subtotal</span>
+          <span class="ammount">{{GrandTotal}}</span>
+      </div>
+      <div class="minicart-btn_area">
+          <a href="../cart" class="munoz-btn munoz-btn_dark munoz-btn_fullwidth">Minicart</a>
+      </div>
+      <div class="minicart-btn_area">
+          <a href="checkout.html" class="munoz-btn munoz-btn_dark munoz-btn_fullwidth">Checkout</a>
+      </div>
+  </div>
+ -->

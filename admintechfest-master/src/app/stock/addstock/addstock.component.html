@@ -1,0 +1,97 @@
+<form [formGroup]="addStockForm" (ngSubmit)="onAddRecord()" #f="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Add Stock Detail</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h5 style="color: red;">* Means the field is mandatary.</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group">
+      <div class="example-container">
+
+<mat-form-field class="example-full-width">
+    <input formControlName="title" matInput type="text" placeholder="Stock Title">
+    <mat-label *ngIf="addStockForm.get('title').hasError('required') && !addStockForm.get('title').pristine ">Stock title
+      is required.</mat-label>
+      <mat-label *ngIf="addStockForm.get('title').hasError('pattern') && !addStockForm.get('title').pristine ">Stock Title
+        should allow only characters.</mat-label>
+       <mat-label *ngIf="addStockForm.get('title').hasError('minlength') && !addStockForm.get('title').pristine ">Stock Title
+          should be > 3 character</mat-label>
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <input formControlName="stockQty" matInput type="number" placeholder="Enter Quantity">
+    <mat-label *ngIf="addStockForm.get('stockQty').hasError('required') && !addStockForm.get('stockQty').pristine ">Quantity
+      is required.</mat-label>
+      <mat-label *ngIf="addStockForm.get('stockQty').hasError('maxlength') && !addStockForm.get('stockQty').pristine ">Quantity
+        should be < 4 Digit</mat-label>
+      <mat-label *ngIf="addStockForm.get('stockQty').hasError('pattern') && !addStockForm.get('stockQty').pristine ">Quantity should allow only Numbers. </mat-label>
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <input formControlName="price" matInput type="text" placeholder="Price">
+    <mat-label *ngIf="addStockForm.get('price').hasError('required') && !addStockForm.get('price').pristine ">Price
+      is required.</mat-label>
+    <mat-label *ngIf="addStockForm.get('price').hasError('maxlength') && !addStockForm.get('price').pristine ">Price
+        should be < 10000</mat-label>
+    <mat-label *ngIf="addStockForm.get('price').hasError('pattern') && !addStockForm.get('price').pristine ">Please enter appropriate quantity.</mat-label>
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <input formControlName="date"  matInput type="date" placeholder="Date">
+    <mat-label *ngIf="addStockForm.get('date').hasError('required') && !addStockForm.get('date').pristine ">Date
+      is required.</mat-label>
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <mat-select formControlName="fk_vendor_id" placeholder="Vendor Name">
+      <mat-option *ngFor="let item of vendorNameArr" [value]="item.vendor_id">
+        {{item.vendor_name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+
+
+  <!-- <button class="example-full-width" [disabled]="!f.valid" type="submit" mat-raised-button color="primary">Add Order to Vendor</button>
+  <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary">Cancle</button>
+</form> -->
+<!-- <div class="rows">
+  <div class="col-md-4">
+      <button class="example-full-width" type="submit" [disabled]="!f.valid" mat-raised-button color="primary"
+      style="border-radius: 20px;background-color:darkblue;">Save</button>
+    </div>
+    <div class="col-md-2"></div>
+  <div class="col-md-4">
+    <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary"
+      style="border-radius: 20px;background-color:cyan">Cancel</button>
+    </div>
+  </div>-->
+  <div class="row">
+    <div class="col-md-2 col-sm-2"></div>
+    <div class="col-md-3 col-sm-3">
+      <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:#4169E1;"><b>Save</b></button>
+    </div>
+    <div class="col-md-1 col-sm-2"></div>
+    <div class="col-md-3 col-sm-3">
+      <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: #00FFFF;"><b>Cancel</b></button>
+    </div>
+  </div>
+  </div>
+  </div>
+</form>

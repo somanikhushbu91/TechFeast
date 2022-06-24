@@ -1,0 +1,11 @@
+.menu{
+  margin-left: auto;
+}
+.nav-list:hover
+{
+  background-color:white;
+  color:blue;
+}
+.sidenav{
+  width: 180px;
+}

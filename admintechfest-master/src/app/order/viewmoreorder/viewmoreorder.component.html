@@ -1,0 +1,46 @@
+<h1 style="text-align: center;">Order Details</h1>
+<div style="width:33%;border-style:double ;float: left;margin-left: 10px;height:auto;" *ngFor="let item of order_multiple">
+  <mat-list>
+    Product Name:
+    <mat-list-item>{{item.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+
+    <img src="http://localhost:3000/images/menu_images/{{item.pic}}" height="100px" width="100px">
+    <mat-divider></mat-divider>
+
+    Price:
+    <mat-list-item>{{item.price}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+    Ingredients:
+    <mat-list-item>{{item.ingredients}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+    Type:
+    <mat-list-item>{{item.is_jain}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+    Payment_type:
+    <mat-list-item>{{item.payment_type}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+    Table No:
+    <mat-list-item>{{item.table_no}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+    Status:
+    <mat-list-item>{{item.status}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+    Qty:
+    <mat-list-item>{{item.qty}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+    Special Instruction:
+    <mat-list-item>{{item.special_instruction}}</mat-list-item>
+    <mat-divider></mat-divider>
+
+  </mat-list>
+
+</div>

@@ -1,0 +1,271 @@
+<div style="height: 140px;">
+  <app-header></app-header>
+</div>
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <h2>Shop Grid View</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Shop</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrapper">
+  <div class="munoz-content_wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 order-2 order-lg-1">
+          <div class="munoz-sidebar-catagories_area">
+            <div class="munoz-sidebar_categories">
+              <div class="munoz-categories_title first-child">
+                <h5>Filter by price</h5>
+              </div>
+              <div class="price-filter">
+                <div id="slider-range"></div>
+                <div class="price-slider-amount">
+                  <div class="label-input">
+                    <label>price : </label>
+                    <input type="text" readonly id="amount" name="price" />
+                    <input type="hidden" id="amountTo" #amountTo>
+                    <input type="hidden" id="amountFrom" #amountFrom>
+                    <button class="filter-btn" (click)="OnPriceFilter(amountTo.value,amountFrom.value)">Filter</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="munoz-sidebar_categories category-module">
+              <div class="munoz-categories_title">
+                <h3>Product Categories</h3>
+              </div>
+              <div class="sidebar-categories_menu">
+                <ul>
+                  <li *ngFor="let item of category" class="has-sub">
+                    <a (click)="getDataBycategory(item)" style="padding-left: 15%;"><img src="http://localhost:3000/images/category_images/{{item.Image}}" height="20%" width="20%" style="border-radius: 50%;">{{item.cat_name}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="munoz-sidebar_categories munoz-banner_area sidebar-banner_area">
+              <div class="banner-item img-hover_effect">
+                <div class="banner-img">
+                  <a href="javascript:void(0)">
+                    <img class="img-full" src="assets/images/shop/1.jpg" alt="Munoz's Banner">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9 order-1 order-lg-2">
+          <div class="shop-toolbar">
+            <div class="product-view-mode">
+              <a class="active grid-3" (click)="goToGridView()" data-toggle="tooltip" data-placement="top"
+                title="Grid View"><i class="fa fa-th"></i></a>
+              <a class="list" (click)="goToListView()" data-toggle="tooltip" data-placement="top" title="List View"><i
+                  class="fa fa-th-list"></i></a>
+            </div>
+            <div class="wrap">
+              <div class="search">
+                <input type="text" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchName">
+                <input type="submit" class="searchButton" (click)="searchProduct()">
+              </div>
+            </div>
+            <div class="product-item-selection_area">
+              <div class="product-short">
+                <label class="select-label">Short By:</label>
+                <select #device (change)="onChange(device.value)">
+                  <option value="1">Default sorting</option>
+                  <option value="2">Name, A to Z</option>
+                  <option value="3">Name, Z to A</option>
+                  <option value="4">Price, low to high</option>
+                  <option value="5">Price, high to low</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="shop-product-wrap grid gridview-3 row">
+            <div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let item of menu">
+              <div class="slide-item" *ngIf="item.is_available=='Available';else tirthak">
+                <div class="single-product">
+                  <div class="product-img">
+                    <a href="single-product.html">
+                      <img class="primary-img" src="http://localhost:3000/images/menu_images/{{item.pic}}">
+                      <img class="secondary-img" src="http://localhost:3000/images/menu_images/{{item.pic}}">
+                    </a>
+                    <div class="add-actions">
+                      <ul>
+                        <li class="quick-view-btn" (click)="onQuickView(item)" data-toggle="modal"
+                          data-target="#exampleModalCenter">
+                          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Quick View">
+                            <i class="ion-ios-search"></i>
+                          </a>
+                        </li>
+                        <li><a (click)="onAddToCart(item)" data-toggle="tooltip" data-placement="top"
+                            title="Add To cart"><i class="ion-bag"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="product-content">
+                    <div class="product-desc_info">
+                      <div class="product-category"><a href="javascript:void(0)">{{item.cat_name}}</a>
+                      </div>
+                      <h3 class="product-name"><a href="single-product.html">{{item.name}}</a>
+                      </h3>
+                      <div class="price-box">
+                        <span class="new-price">{{item.price | currency:'INR'}}</span>
+                      </div>
+                      <div class="rating-box">
+                        <ul>
+                          <li><i class="ion-ios-star"></i></li>
+                          <li><i class="ion-ios-star"></i></li>
+                          <li><i class="ion-ios-star"></i></li>
+                          <li><i class="ion-ios-star"></i></li>
+                          <li><i class="ion-ios-star"></i></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <ng-template #tirthak>
+            <div class="slide-item" disabled>
+              <div class="single-product">
+                <div class="product-img">
+                  <a href="single-product.html">
+                    <img class="primary-img" src="http://localhost:3000/images/menu_images/{{item.pic}}">
+                    <img class="secondary-img" src="http://localhost:3000/images/menu_images/{{item.pic}}">
+                  </a>
+                  <div class="add-actions">
+                    <ul>
+                      <li class="quick-view-btn" (click)="onQuickView(item)" data-toggle="modal"
+                        data-target="#exampleModalCenter">
+                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Quick View">
+                          <i class="ion-ios-search"></i>
+                        </a>
+                      </li>
+                      <li><a (click)="onAddToCart(item)" data-toggle="tooltip" data-placement="top"
+                          title="Add To cart"><i class="ion-bag"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="product-content">
+                  <div class="product-desc_info">
+                    <div class="product-category"><a href="javascript:void(0)">{{item.cat_name}}</a>
+                    </div>
+                    <h3 class="product-name"><a href="single-product.html">{{item.name}}</a>
+                    </h3>
+                    <div class="price-box">
+                      <span class="new-price">{{item.price | currency:'INR'}}</span>
+                    </div>
+                    <div class="rating-box">
+                      <ul>
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-ios-star"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+
+<div class="modal fade modal-wrapper" id="exampleModalCenter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-inner-area sp-area row">
+          <div class="col-lg-5">
+            <div class="sp-img_area">
+              <div class="sp-img_slider-2 slick-img-slider munoz-slick-slider" data-slick-options='{
+                                              "slidesToShow": 1,
+                                              "arrows": false,
+                                              "fade": true,
+                                              "draggable": false,
+                                              "swipe": false,
+                                              "asNavFor": ".sp-img_slider-nav"
+                                              }'>
+                <div class="single-slide umber">
+                  <img #image src="http://localhost:3000/images/menu_images/{{QuickView_image}}"
+                    alt="Munoz's Product Image">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-7 col-lg-6">
+            <div class="sp-content">
+              <div class="sp-heading">
+                <h5><a href="javascript:;">{{QuickView_MenuName}}</a></h5>
+              </div>
+              <div class="price-box">
+                <span class="new-price">{{QuickView_Price | currency:'INR'}}</span>
+              </div>
+              <div class="features">
+                Description : {{QuickView_Description}}
+              </div>
+              <div class="quantity-area">
+                <div class="quantity-btn">
+                  <ul>
+                    <li><a (click)="onAddToCartQuickView()" class="add-to_cart">Add To Cart</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="short-desc">
+                Ingredients<p>{{QuickView_Ingredients}}</p>
+              </div>
+              <div class="short-desc">
+                Type<p>{{QuickView_is_jain}}</p>
+              </div>
+              <div class="short-desc">
+                Availability<p>{{QuickView_is_available}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <label>Image:</label>
+<img class="primary-img" src="http://localhost:3000/Images/menu_images/{{pic}}">
+<img class="secondary-img" src="{{pic}}">
+<mat-divider></mat-divider>
+<label>Name :- </label><h6>{{name}}</h6>
+<mat-divider></mat-divider>
+<label>Discription :- </label><h6>{{discription}}</h6>
+<mat-divider></mat-divider>
+<label>Price :- </label><h6>{{price}}</h6>
+<mat-divider></mat-divider>
+<label>Jain/Non Jain :- </label><h6>{{is_jain}}</h6>
+<mat-divider></mat-divider>
+<label>Available / Not Available:- </label><h6>{{is_available}}</h6>
+<mat-divider></mat-divider>
+<label>Ingredients :- </label><h6>{{ingredients}}</h6>
+<mat-divider></mat-divider>
+<label>Category Name :- </label><h6>{{cat_name}}</h6>
+<mat-divider></mat-divider>
+(click)="onAddToCartCall(QuickView_image,QuickView_MenuName,QuickView_Price,QuickView_Description,QuickView_Ingredients)"
+-->

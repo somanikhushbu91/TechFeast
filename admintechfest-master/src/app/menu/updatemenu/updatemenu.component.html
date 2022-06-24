@@ -1,0 +1,200 @@
+<form [formGroup]="updatemenuform" (ngSubmit)="onMenuupdate(f)" #f="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Update Menu Item</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h5 style="color: red;">* Means the field is mandatary.</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+        <input formControlName="name" matInput type="text" required placeholder="Menu Item Name">
+        <mat-icon matSuffix>name</mat-icon>
+        <mat-label *ngIf="updatemenuform.get('name').hasError('required') && !updatemenuform.get('name').pristine ">Name
+        is required.</mat-label>
+        <mat-label *ngIf="updatemenuform.get('name').hasError('pattern') && !updatemenuform.get('name').pristine ">Name
+        should allow characters.</mat-label>
+        <mat-label *ngIf="updatemenuform.get('name').hasError('minlength') && !updatemenuform.get('name').pristine ">Name
+          should have minimum 3 charecters.</mat-label>
+
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <input formControlName="discription" matInput type="text" required placeholder="Discription">
+          <mat-label *ngIf="updatemenuform.get('discription').hasError('required') && !updatemenuform.get('discription').pristine ">Discription
+          is required.</mat-label>
+          <mat-label *ngIf="updatemenuform.get('discription').hasError('pattern') && !updatemenuform.get('discription').pristine ">Discription
+          should allow characters.</mat-label>
+          <mat-label *ngIf="updatemenuform.get('discription').hasError('minlength') && !updatemenuform.get('discription').pristine ">Discription
+            should have minimum 3 characters.</mat-label>
+
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <input formControlName="price" matInput type="number" required placeholder="Price">
+          <mat-icon matSuffix>rupee</mat-icon>
+          <mat-label *ngIf="updatemenuform.get('price').hasError('required') && !updatemenuform.get('price').pristine ">price
+          is required.</mat-label>
+          <mat-label *ngIf="updatemenuform.get('price').hasError('maxlength') && !updatemenuform.get('price').pristine ">price
+          should not be greater than 100000</mat-label>
+          <mat-label *ngIf="updatemenuform.get('price').hasError('pattern') && !updatemenuform.get('price').pristine ">Only numbers.
+          </mat-label>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <mat-select formControlName="fk_cat_id" placeholder="Category Name">
+          <mat-option *ngFor="let item of cat_data" [value]="item.cat_id">
+          {{item.cat_name}}
+          </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="container">
+        <div class="example-container">
+          <mat-label style="font-family: Glass Antiqua; color:grey; font-size:17px;" >Is_jain: </mat-label>
+          <mat-radio-group class="example-radio-group example-full-width" formControlName="is_jain">
+
+            <mat-radio-button style="font-family:Glass Antiqua; font-size:18px;" class="example-radio-button"
+            *ngFor="let item of isjainArr" [value]="item">{{item}}&nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="example-container">
+          <mat-label style="font-family: Glass Antiqua; color:grey; font-size:17px;">Is_available: </mat-label>
+          <mat-radio-group class="example-radio-group example-full-width" formControlName="is_available">
+
+            <mat-radio-button style="font-family:Glass Antiqua; font-size:18px;" class="example-radio-button"
+            *ngFor="let item of isavailableArr" [value]="item">{{item}} &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+
+
+  <!-- <mat-form-field class="example-full-width">
+    <mat-select formControlName="is_jain">
+      <mat-option selected value="Jain">jain</mat-option>
+      <mat-option value="Non Jain">Non jain</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-select formControlName="is_available">
+      <mat-option selected value="Available">Available</mat-option>
+      <mat-option value="Not Available">Non Available</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+  <form>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-5">
+          <div class="example-container">
+            <mat-form-field class="example-full-width" style="width:100%;">
+              <mat-select placeholder="Ingredients Name" [(ngModel)]="itemINGREDIENTSNAME" name="itemINGREDIENTSNAME">
+                <mat-option *ngFor="let item of ingredientnamearr" [value]="item.title">
+                  {{item.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-5">
+          <div class="example-container">
+            <mat-form-field class="example-full-width" style="width:100%;">
+              <mat-select placeholder="Ingredients Unit" [(ngModel)]="itemINGREDIENTSUnit" name="itemINGREDIENTSUnit">
+                <mat-option *ngFor="let item of ingredientunitarr" [value]="item">
+                  {{item}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <button mat-mini-fab color="primary" (click)="onAddIngredients()"
+            [disabled]="itemINGREDIENTSNAME=='' || itemINGREDIENTSUnit==0">
+            <mat-icon aria-label="Example icon-button with a heart icon">done_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-4">
+        <mat-label><b>Ingredients Used:</b></mat-label>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <table mat-table [dataSource]="dataSourceOfIngredient" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="IngredientName">
+        <th mat-header-cell *matHeaderCellDef> Ingredient Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.itemINGREDIENTSNAME}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="IngredientUnit">
+        <th mat-header-cell *matHeaderCellDef> Ingredient Unit (gm) </th>
+        <td mat-cell *matCellDef="let element"> {{element.itemINGREDIENTSUNIT}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsOfIngredient"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsOfIngredient;"></tr>
+    </table>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 col-sm-2"></div>
+    <div class="col-md-3 col-sm-3">
+      <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:#4169E1;margin-top: 5%;"><b>Save</b></button>
+    </div>
+    <div class="col-md-1 col-sm-2"></div>
+    <div class="col-md-3 col-sm-3">
+      <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: #00FFFF;margin-top: 5%;"><b>Cancel</b></button>
+    </div>
+  </div>
+
+  <!-- <button class="example-full-width" type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Update Menu</button>
+  <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary">Cancle</button> -->
+  </div>
+  </div>
+</form>
+
+
+
+<!-- <mat-form-field class="example-full-width">
+  <input formControlName="ingredients" matInput type="text" required placeholder="Enter Ingredients">
+  <mat-label *ngIf="updatemenuform.get('ingredients').hasError('required') && !updatemenuform.get('ingredients').pristine ">Ingredients
+  should not be empty</mat-label>
+  <mat-label *ngIf="updatemenuform.get('ingredients').hasError('required') && !updatemenuform.get('ingredients').pristine ">Ingredients
+    should not be empty</mat-label>
+    <mat-label *ngIf="updatemenuform.get('ingredients').hasError('pattern') && !updatemenuform.get('ingredients').pristine ">Ingredients
+      should not match with the pattern</mat-label>
+</mat-form-field> -->

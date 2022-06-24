@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login Form Design One | Fazt</title>
+  </head>
+  <body>
+
+    <div class="login-box">
+      <img src="../../assets/logo.png" class="avatar" alt="Avatar Image">
+      <h1>Login Here</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <!-- USERNAME INPUT -->
+       <label for="username">Email Id</label>
+        <input matInput formControlName="email_id" type="text" placeholder="Enter EmailId" style="color: white;">
+        <mat-label class="label" *ngIf="loginForm.get('email_id').hasError('required') && !loginForm.get('email_id').pristine ">Email
+          should not be empty</mat-label>
+        <mat-label class="label" *ngIf="loginForm.get('email_id').hasError('email') && !loginForm.get('email_id').pristine ">Invalid
+         Email</mat-label>
+
+        <!-- PASSWORD INPUT -->
+        <label for="password">Password</label>
+        <input type="password" matInput formControlName="password" placeholder="Enter Password">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-icon matSuffix (click)="flag = !flag">{{flag ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+
+        <mat-label class="label" *ngIf="loginForm.get('password').hasError('required') && !loginForm.get('password').pristine ">Password
+        is required.</mat-label>
+        <mat-label class="label" *ngIf="loginForm.get('password').hasError('maxlength') && !loginForm.get('password').pristine ">Maximum length for password is 15.</mat-label>
+        <mat-label class="label" *ngIf="loginForm.get('password').hasError('minlength') && !loginForm.get('password').pristine ">Password must have minimum 8 characters.</mat-label>
+
+        <label>
+          <a (click)="forgotPassword()">Forgot Password</a>
+        </label>
+
+        <br><input style="margin-top: 40px;" type="submit" value="Log In">
+
+      </form>
+    </div>
+  </body>
+</html>

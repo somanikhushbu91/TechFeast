@@ -1,0 +1,126 @@
+ <form [formGroup]="updateuserform"  (ngSubmit)="onEmployeeUpdate()" #f="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3 >Update Employee</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h5 style="color: red;">* Means the field is mandatary.</h5>
+      </div>
+    </div>
+  </div>
+  <!-- <form [formGroup]="adduserform" (ngSubmit)="onEmployeeAdd()" #f="ngForm"> -->
+  <div class="container">
+    <div class="form-group">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <input formControlName="password" matInput type="password" placeholder="Password">
+          <!-- <mat-hint align="end">{{password.value?.length}}/15</mat-hint> -->
+          <mat-icon matSuffix>passsword</mat-icon>
+          <mat-label *ngIf="updateuserform.get('password').hasError('required') && !updateuserform.get('password').pristine ">Password
+           is required.</mat-label>
+          <mat-label *ngIf="updateuserform.get('password').hasError('minlength') && !updateuserform.get('password').pristine ">Password
+             must have minimum 8 character.</mat-label>
+          <mat-label *ngIf="updateuserform.get('password').hasError('maxlength') && !updateuserform.get('password').pristine ">Password
+            must have maximum 15 character.</mat-label>
+          </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+        <input formControlName="name" matInput type="text" placeholder="Employee name">
+        <mat-icon matSuffix>person_outline</mat-icon>
+        <mat-label *ngIf="updateuserform.get('name').hasError('required') && !updateuserform.get('name').pristine ">Name
+        is required.</mat-label>
+        <mat-label *ngIf="updateuserform.get('name').hasError('pattern') && !updateuserform.get('name').pristine ">Name
+          should allow only Characters</mat-label>
+          <mat-label *ngIf="updateuserform.get('name').hasError('minlength') && !updateuserform.get('name').pristine ">Name
+            must have minimum 3 characters.</mat-label>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <span matPrefix>+91 &nbsp;</span>
+        <input formControlName="mobile_no" type="text" matInput  placeholder="Mobile Number">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-label *ngIf="updateuserform.get('mobile_no').hasError('required') && !updateuserform.get('mobile_no').pristine ">Mobile NO
+        is required.</mat-label>
+        <mat-label *ngIf="updateuserform.get('mobile_no').hasError('minlength') && !updateuserform.get('mobile_no').pristine ">Please enter
+         appropriate length of numbers.</mat-label>
+        <mat-label *ngIf="updateuserform.get('mobile_no').hasError('maxlength') && !updateuserform.get('mobile_no').pristine ">Please enter
+        appropiate length of numbers.</mat-label>
+        <mat-label *ngIf="updateuserform.get('mobile_no').hasError('pattern') && !updateuserform.get('mobile_no').pristine ">Only numbers
+          </mat-label>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+        <input formControlName="dob" matInput type="date" placeholder="Date Of Birth">
+        <mat-icon matSuffix>date_range</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+        <input formControlName="address" matInput type="text" placeholder="Employee address">
+        <mat-icon matSuffix>description</mat-icon>
+        <mat-label *ngIf="updateuserform.get('address').hasError('required') && !updateuserform.get('address').pristine ">Address
+       is required.</mat-label>
+       <mat-label *ngIf="updateuserform.get('address').hasError('minlength') && !updateuserform.get('address').pristine ">Address -->
+        must have minimum 3 characters.</mat-label>
+         </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+        <input formControlName="salary" matInput type="number" placeholder="Employee salary"><mat-icon matSuffix>rupee</mat-icon>
+        <mat-label *ngIf="updateuserform.get('salary').hasError('required') && !updateuserform.get('salary').pristine ">Salary
+        is reuired.</mat-label>
+        <mat-label *ngIf="updateuserform.get('salary').hasError('maxlength') && !updateuserform.get('salary').pristine ">Salary
+          should not be > 100000</mat-label>
+          <mat-label *ngIf="updateuserform.get('salary').hasError('pattern') && !updateuserform.get('salary').pristine ">Only
+            numbers.</mat-label>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+        <input formControlName="joining_date"  matInput type="date" placeholder="Date Of joining">
+        <mat-icon matSuffix>date_range</mat-icon>
+        <mat-label *ngIf="updateuserform.get('joining_date').hasError('required') && !updateuserform.get('joining_date').pristine ">Joining Date
+        should not be empty</mat-label>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+        <mat-select formControlName="employee_type" placeholder="Employee type">
+        <mat-option value="Admin">Admin</mat-option>
+        <mat-option value="Kitchen Chef">Kitchen Chef</mat-option>
+        </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:#4169E1;"><b>Save</b></button>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: cyan;"><b>Cancel</b></button>
+        </div>
+      </div>
+  </div>
+  </div>
+</form>
+
+
+
+
+  <!-- <button class="example-full-width" [disabled]="!f.valid" type="submit" mat-raised-button color="primary">Add User</button>
+  <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary">Cancle</button> -->
+

@@ -1,0 +1,77 @@
+<div style="height: 140px;">
+  <app-header></app-header>
+</div>
+<!-- Mirrored from demo.hasthemes.com/munoz-preview-v1/munoz/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Feb 2020 13:52:09 GMT -->
+
+        <!-- Begin Munoz's Breadcrumb Area -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <h2>Shop Related Page</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Cart</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Munoz's Breadcrumb Area End Here -->
+        <!-- Begin Munoz's Cart Area -->
+        <div class="munoz-cart-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="javascript:void(0)">
+                            <div class="table-content table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="munoz-product-remove">remove</th>
+                                            <th class="munoz-product-thumbnail">images</th>
+                                            <th class="cart-product-name">Product</th>
+                                            <th class="munoz-product-price">Unit Price</th>
+                                            <th class="munoz-product-quantity">Quantity</th>
+                                            <th class="munoz-product-subtotal">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of arrcartItem ; let i= index">
+                                            <td class="munoz-product-remove"><a ><i class="fa fa-trash"
+                                                title="Remove" (click)="onRemoveFromCart(item.menuItem.menu_id,i)"></i></a></td>
+                                            <td class="munoz-product-thumbnail"><a><img src="http://localhost:3000/images/menu_images/{{item.menuItem.pic}}" height="50" width="50" alt="Munoz's Cart Thumbnail"></a></td>
+                                            <td class="munoz-product-name"><a>{{item.menuItem.name}}</a></td>
+                                            <td class="munoz-product-price"><span class="amount">{{item.menuItem.price | currency : 'INR'}}</span></td>
+                                            <td class="quantity">
+                                                <label>Quantity</label>
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" readonly #txtQuantity [value]="item.Quantity" type="text" >
+                                                    <div class="dec qtybutton"><i class="fa fa-angle-down" (click)="onQuantitydecr(item,txtQuantity.value, i)"></i></div>
+                                                    <div class="inc qtybutton"><i class="fa fa-angle-up" (click)="onQuantityincr(item,txtQuantity.value, i)" ></i></div>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal"><span class="amount">{{item.SubTotal | currency:'INR'}}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 ml-auto">
+                                    <div class="cart-page-total">
+                                        <h2>Cart totals</h2>
+                                        <ul>
+                                            <li>Total <span>{{ GrandTotal | currency : 'INR'}}</span></li>
+                                        </ul>
+                                        <a (click)="onProceedTOCheckOut()" href="javascript:void(0)">Proceed to checkout</a>
+                                        <!-- <a >Proceed to checkout</a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Munoz's Cart Area End Here -->
+        <!-- Munoz's Modal Area End Here -->
+
+<app-footer></app-footer>

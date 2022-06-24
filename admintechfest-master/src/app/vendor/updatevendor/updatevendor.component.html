@@ -1,0 +1,89 @@
+<form [formGroup]="updatevendorform"  (ngSubmit)="onVendorUpdate()" #f="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3 >Update Vendor Detail</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h5 style="color: red;">* Means the field is mandatary.</h5>
+      </div>
+    </div>
+  </div>
+  <!-- <form [formGroup]="adduserform" (ngSubmit)="onEmployeeAdd()" #f="ngForm"> -->
+  <div class="container">
+    <div class="form-group">
+      <div class="example-container">
+    <mat-form-field class="example-full-width">
+      <input formControlName="vendor_name" matInput type="text" placeholder="Enter Name">
+      <mat-icon matSuffix>person_outline</mat-icon>
+      <mat-label *ngIf="updatevendorform.get('vendor_name').hasError('required') && !updatevendorform.get('vendor_name').pristine ">Name
+        is required.</mat-label>
+        <mat-label *ngIf="updatevendorform.get('vendor_name').hasError('pattern') && !updatevendorform.get('vendor_name').pristine ">Name
+          should only allow characters.</mat-label>
+       <mat-label *ngIf="updatevendorform.get('vendor_email').hasError('minlength') && !updatevendorform.get('vendor_name').pristine ">Name
+          must have minimum 3 character</mat-label>
+    </mat-form-field>
+    </div>
+
+    <div class="example-container">
+    <mat-form-field class="example-full-width">
+      <input formControlName="vendor_email" matInput type="text" placeholder="Enter vendor email address">
+      <mat-label *ngIf="updatevendorform.get('vendor_email').hasError('required') && !updatevendorform.get('vendor_email').pristine ">Location
+        is required.</mat-label>
+      <mat-label *ngIf="updatevendorform.get('vendor_email').hasError('email') && !updatevendorform.get('vendor_email').pristine ">Invalid locatiion</mat-label>
+    </mat-form-field>
+    </div>
+
+    <div class="example-container">
+    <mat-form-field class="example-full-width">
+      <span matPrefix>+91 &nbsp;</span>
+      <input formControlName="mobile_no" type="text" matInput appPhone placeholder="Enter Mobile Number">
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-label *ngIf="updatevendorform.get('mobile_no').hasError('required') && !updatevendorform.get('mobile_no').pristine ">Mobile NO
+        is required.</mat-label>
+      <mat-label *ngIf="updatevendorform.get('mobile_no').hasError('minlength') && !updatevendorform.get('mobile_no').pristine ">Please enter
+        appropriate length of numbers.</mat-label>
+      <mat-label *ngIf="updatevendorform.get('mobile_no').hasError('maxlength') && !updatevendorform.get('mobile_no').pristine ">Please enter
+        appropriate length of numbers.</mat-label>
+        <mat-label *ngIf="updatevendorform.get('mobile_no').hasError('pattern') && !updatevendorform.get('mobile_no').pristine ">Only numbers.</mat-label>
+    </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field class="example-full-width">
+        <input formControlName="password" type="text" matInput placeholder="Vendor password">
+        <mat-icon matSuffix>edit</mat-icon>
+        <mat-label *ngIf="updatevendorform.get('password').hasError('required') && !updatevendorform.get('password').pristine ">Password
+          is required.</mat-label>
+        <mat-label *ngIf="updatevendorform.get('password').hasError('minlength') && !updatevendorform.get('password').pristine ">Please enter appropriate length of numbers.</mat-label>
+        <mat-label *ngIf="updatevendorform.get('password').hasError('maxlength') && !updatevendorform.get('password').pristine ">Please enter appropriate length of numbers.</mat-label>
+      </mat-form-field>
+      </div>
+
+    <!-- <button class="example-full-width" type="submit" mat-raised-button color="primary">Update Vendor</button>
+    <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary">Cancle</button> -->
+
+    <!-- <div class="row">
+      <div class="col-md-4">
+        <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:purple;">Save</button>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: green;">Cancel</button>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-md-4">
+        <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:#4169E1;"><b>Update</b></button>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: #00FFFF;"><b>Cancel</b></button>
+      </div>
+    </div>
+
+</div>
+</div>
+</form>

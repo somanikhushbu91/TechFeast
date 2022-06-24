@@ -1,0 +1,33 @@
+<form class="example-form">
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="product name" [(ngModel)]="pro_id" name="pro_id">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="product price" [(ngModel)]="pro_name" name="pro_name">
+    </mat-form-field></td>
+  </tr></table>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="product color" [(ngModel)]="pro_price" name="pro_price">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="product mfg" [(ngModel)]="pro_mfg" name="pro_mfg">
+    </mat-form-field></td>
+  </tr></table>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="product soh" [(ngModel)]="pro_soh" name="pro_soh">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="product img" [(ngModel)]="img" name="img">
+    </mat-form-field></td>
+  </tr></table>
+
+  <select [(ngModel)]="selected" name="fk_cat_id">
+    <option *ngFor="let item of product_arr" [value]="item.cat_id">{{item.cat_name}}</option>
+  </select>
+  <button mat-button color="primary" (click)="onAddUser()">Primary</button>
+</form>

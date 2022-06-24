@@ -1,0 +1,68 @@
+<div class="updateprice">
+  <form [formGroup]="updatepriceform" (ngSubmit)="onEmployeeUpdate(f)" #f="ngForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Update Prices</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h5 style="color: red;">* Means the field is mandatary.</h5>
+        </div>
+      </div>
+    </div>
+    <!-- <form [formGroup]="adduserform" (ngSubmit)="onEmployeeAdd()" #f="ngForm"> -->
+    <div class="container">
+      <div class="form-group">
+        <div class="example-container">
+          <mat-form-field class="example-full-width">
+            <input formControlName="price" matInput type="number" placeholder="Price">
+            <!-- <mat-hint align="end">{{password.value?.length}}/15</mat-hint> -->
+            <mat-icon matSuffix>passsword</mat-icon>
+            <mat-label
+              *ngIf="updatepriceform.get('price').hasError('required') && !updatepriceform.get('price').pristine ">Price
+              is required.</mat-label>
+            <mat-label
+              *ngIf="updatepriceform.get('price').hasError('pattern') && !updatepriceform.get('price').pristine ">Only
+              Numbers
+            </mat-label>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+          <mat-form-field class="example-full-width">
+            <input formControlName="amount" matInput type="number" placeholder="Amount">
+            <!-- <mat-hint align="end">{{password.value?.length}}/15</mat-hint> -->
+            <mat-icon matSuffix>passsword</mat-icon>
+            <mat-label
+              *ngIf="updatepriceform.get('amount').hasError('required') && !updatepriceform.get('amount').pristine ">
+              Amount
+              is required.</mat-label>
+            <mat-label
+              *ngIf="updatepriceform.get('amount').hasError('pattern') && !updatepriceform.get('amount').pristine ">Only
+              Numbers
+            </mat-label>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control"
+              style="border-radius: 20px;background-color:#4169E1;float: left;margin-left: 20%;"><b>Save</b></button>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()"
+              style="border-radius: 20px;background-color: cyan;margin-left: 20%;"><b>Cancel</b></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- <button class="example-full-width" [disabled]="!f.valid" type="submit" mat-raised-button color="primary">Add User</button>
+  <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary">Cancle</button> -->

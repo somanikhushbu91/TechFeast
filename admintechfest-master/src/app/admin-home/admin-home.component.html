@@ -1,0 +1,269 @@
+<div class="grid-container">
+  <!-- <h1 class="mat-h1">Dashboard</h1> -->
+
+  <div class="rows">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="text-align: center; font-family: georgia,serif ;font-size: 25px;">Dashboard</div>
+  </div>
+
+	<div class="main-section">
+		<div class="section">
+			<div class="top-section">
+				<h3>Today's Order</h3>
+			</div>
+			<div class="border-section">
+				<div class="left-border"></div>
+				<div class="right-border"></div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="bottom-section">
+				<h2>{{dailyOrders}}</h2>
+			</div>
+		</div>
+		<div class="second-section">
+			<div class="top-section">
+				<h3>Today's Sell</h3>
+			</div>
+			<div class="border-section">
+				<div class="left-border"></div>
+				<div class="right-border"></div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="bottom-section">
+				<h2>{{totalDaily | currency:'INR'}}</h2>
+			</div>
+		</div>
+		<div class="third-section">
+			<div class="top-section">
+				<h3>FeedBacks</h3>
+			</div>
+			<div class="border-section">
+				<div class="left-border"></div>
+				<div class="right-border"></div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="bottom-section">
+				<h2>{{allFeedbacks}}</h2>
+			</div>
+		</div>
+		<div class="forth-section">
+			<div class="top-section">
+				<h3>Monthly Sell</h3>
+			</div>
+			<div class="border-section">
+				<div class="left-border"></div>
+				<div class="right-border"></div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="bottom-section">
+				<h2>{{totalMonthlySell | currency:'INR'}}</h2>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+
+  <mat-grid-list cols="2" rowHeight="400px">
+    <div>
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title style="color:chocolate;">
+              <h4>Daily Payments</h4>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+              <div *ngIf="paymentchartflag">
+                  <h3>No data For Chart</h3>
+                </div>
+            <div *ngIf="sellingpie">
+              <canvas id="canvas1">{{sellingpie}}</canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </div>
+
+    <div (click)="oncharity()">
+      <!-- <mat-grid-list cols="2" rowHeight="350px" (click)="onclick()"> -->
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-card class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title style="color:chocolate;">
+                <h4>Monthly Selling(Category Wise)</h4>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              <div>
+                  <div *ngIf="!monthlyselling">
+                      <h1>No data For Chart</h1>
+                    </div>
+                  <div *ngIf="monthlyselling">
+                      <canvas id="canvas2">{{monthlyselling}}</canvas>
+                    </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        </div>
+
+        <div>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-card class="dashboard-card">
+              <mat-card-header>
+                <mat-card-title style="color:chocolate;">
+                  <h4>Monthly Payment(Mode Wise)</h4>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="dashboard-card-content">
+                <div>
+                    <div *ngIf="monthlypayment">
+                        <canvas id="canvas3">{{monthlypayment}}</canvas>
+                      </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        </div>
+
+        <div (click)="oncharity()">
+            <!-- <mat-grid-list cols="2" rowHeight="350px" (click)="onclick()"> -->
+              <mat-grid-tile colspan="1" rowspan="1">
+                <mat-card class="dashboard-card">
+                  <mat-card-header>
+                    <mat-card-title style="color:chocolate;">
+                      <h4>Highest Selling Products(Top 10)</h4>
+                      <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu2" aria-label="Toggle menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu2="matMenu" xPosition="before">
+                        <button mat-menu-item>abc</button>
+                        <button mat-menu-item>pqr</button>
+                      </mat-menu> -->
+                    </mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="dashboard-card-content">
+                    <div>
+                      <div class="example-container mat-elevation-z8">
+                          <table mat-table [dataSource]="highestselling">
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="ItemNAME">
+                              <th mat-header-cell *matHeaderCellDef>Item Name </th>
+                              <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="QTY">
+                              <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                              <td mat-cell *matCellDef="let element">{{element.total}}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="highestSellingColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: highestSellingColumns;"></tr>
+                          </table>
+                        </div>
+                      </div>
+                  </mat-card-content>
+                </mat-card>
+              </mat-grid-tile>
+              </div>
+
+              <div (click)="onclick()">
+                <mat-grid-tile colspan="2" rowspan="1">
+                  <mat-card class="dashboard-card">
+                    <mat-card-header>
+                      <mat-card-title style="color:chocolate;">
+                        <h4>Today's Order</h4>
+                        <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                          <button mat-menu-item>Expand</button>
+                          <button mat-menu-item>Remove</button>
+                        </mat-menu> -->
+                      </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content">
+                      <div>
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort multiTemplateDataRows>
+                          <!-- <ng-container matColumnDef="index">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>
+                            <td mat-cell *matCellDef="let element;let i = dataIndex;">{{i+1}}</td>
+                          </ng-container> -->
+
+                          <ng-container matColumnDef="item">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Item</th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="qty">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Qty</th>
+                            <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
+                          </ng-container>
+
+
+                          <ng-container matColumnDef="price">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+                            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="tableNo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Table No</th>
+                            <td mat-cell *matCellDef="let element"> {{element.table_no}} </td>
+                          </ng-container>
+
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                        </tr>
+                      </table>
+                      <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
+
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-grid-tile>
+                </div>
+
+                <div (click)="oncharity()">
+                  <!-- <mat-grid-list cols="2" rowHeight="350px" (click)="onclick()"> -->
+                    <mat-grid-tile colspan="2" rowspan="1">
+                      <mat-card class="dashboard-card">
+                        <mat-card-header>
+                          <mat-card-title style="color:chocolate;">
+                            <h4>Charity</h4>
+                            <!-- <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu2" aria-label="Toggle menu">
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu2="matMenu" xPosition="before">
+                              <button mat-menu-item>abc</button>
+                              <button mat-menu-item>pqr</button>
+                            </mat-menu> -->
+                          </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="dashboard-card-content">
+                          <div>
+                              <div class="container" *ngFor="let item of charity; let i=index">
+                                  <div class="list-group-item" style="width: 52%; height: 50%; margin-left: 20%;" *ngIf="i<3">
+                                    <div class="container">
+                                      <div class="rows">
+                                        <!-- <div class="rows"> -->
+                                          <div class="col-md-4 col-sm-1">
+                                            <mat-card ><h3> Charity Name:{{item.charity_name}}</h3></mat-card>
+                                           </div>
+
+                                          <div class="col-md-1 col-sm-3">
+                                            <button style="margin-top:10px; margin-left: 150%;" mat-fab color="primary" (click)="onsend(item.email_id)">
+                                              <mat-icon>email</mat-icon>
+                                            </button>
+                                          </div>
+                                      </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                          </div>
+                        </mat-card-content>
+                      </mat-card>
+                    </mat-grid-tile>
+                    </div>
+      </mat-grid-list>
+</div>

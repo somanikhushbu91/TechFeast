@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="chatlist" #chatlist>
+		<ul class="list-group">
+			<li class="list-group-item" *ngFor="let msg of messages">
+			<img [src]="msg.avatar" class="avatar">
+			<div class="message">
+				{{msg.content | titlecase}}
+			</div>
+			<div class="timeform">
+				<i class="fa fa-clock-o"></i><span class="timestamp">at {{msg.timestamp | date : 'short'}}</span>
+			</div>
+			</li>
+		</ul>
+	</div>
+	<form  (onsubmit)="sendMessage()" class="chatcontrol">
+		<div class="input-group mb-3">
+			<mat-form-field class="example-full-width" appearance="fill">
+				<input type="text" matInput class="chatinput" placeholder="Enter Your Message" name="content" [(ngModel)]="message.content"/>
+			</mat-form-field>
+			<div class="input-group-append">
+				<button type="button" (click)="onClose()" class="sendbtn" mat-raised-button>Close</button>
+				<button mat-raised-button color="primary" class="sendbtn" (click)="sendMessage()" type="submit">Send
+					<mat-icon style="font-size: 15px;margin-top: 13%;">send</mat-icon>
+				</button>
+			</div>
+		</div>
+	</form>
+</div>

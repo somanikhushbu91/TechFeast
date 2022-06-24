@@ -1,0 +1,33 @@
+.example-card {
+  max-width: 300px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.example-card {
+  /* max-width: 240px;
+  min-height: 320px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 5%;
+  float: right;
+  align-items: right;
+  border-color: blue; */
+  display: table-cell; /* Make elements inside the container behave like table cells */
+}
+
+.mat-form-field {
+  font-size: 16px;
+  width: 100%;
+}
+
+.addMore{
+  transition: all ease-in-out 0.2s;
+  cursor: pointer;
+}
+.addMore:hover{
+  border: 1px solid #888;
+  background-color: #ddd;
+}

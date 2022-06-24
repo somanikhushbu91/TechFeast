@@ -1,0 +1,60 @@
+<!-- <div class="maildis">
+<form [formGroup]="mailVendorForm" (ngSubmit)="onMailVendor(f)" #f="ngForm">
+
+  <mat-form-field class="example-full-width">
+    <input formControlName="email_id" readonly matInput type="text" disabled>
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field><br>
+
+  <mat-form-field class="example-full-width">
+    <input formControlName="subject" matInput type="text" placeholder="Enter the subject">
+    <mat-icon matSuffix>pen</mat-icon>
+  </mat-form-field><br>
+
+  <mat-form-field class="example-full-width">
+    <textarea formControlName="message" rows="2" cols="200" matInput style="height:250px !important;"></textarea>
+  </mat-form-field><br>
+
+  <button class="example-full-width" type="submit" mat-raised-button color="primary">Send</button>
+
+</form>
+</div> -->
+<div class="maildis">
+  <!-- //<form [formGroup]="mailcharityForm" (ngSubmit)="onMailcharity(f)" #f="ngForm"> -->
+    <form [formGroup]="mailVendorForm" (ngSubmit)="onMailVendor(f)" #f="ngForm">
+          <div class="col-md-4">
+            <h3>Vendor Mail Details</h3>
+          </div>
+
+    <mat-form-field class="example-full-width">
+      <input formControlName="email_id" readonly matInput type="text" disabled>
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field><br>
+
+
+    <!-- <div class="example-container"> -->
+    <mat-form-field class="example-full-width">
+      <input formControlName="subject" matInput type="text" placeholder="Enter subject">
+      <mat-icon matSuffix>pen</mat-icon>
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <textarea formControlName="message" rows="2" cols="200" matInput style="height:250px !important;" placeholder="Enter message"></textarea>
+    </mat-form-field><br>
+
+    <!-- <div class="rows">
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-3 col-sm-3"> -->
+        <button class="example-full-width" type="submit" [disabled]="!f.valid" mat-raised-button color="primary"
+        style="border-radius: 20px;background-color:#4169E1"><b>Send</b></button>
+
+      <!-- <div class="col-md-1 col-sm-2"></div>
+      <div class="col-md-3 col-sm-3">
+        <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary"
+        style="border-radius: 20px;background-color:green;">Cancel</button>
+      </div> -->
+
+
+  </form>
+
+
+

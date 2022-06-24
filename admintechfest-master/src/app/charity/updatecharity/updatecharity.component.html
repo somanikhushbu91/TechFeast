@@ -1,0 +1,84 @@
+<form [formGroup]="updatecharityform" (ngSubmit)="oncharityUpdate()" #f="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+          <h3>Update Charity Detail</h3>
+      </div>
+    </div>
+  </div>
+<!-- <form [formGroup]="updatecharityform" (ngSubmit)="oncharityUpdate()" #f="ngForm"> -->
+
+  <div class="container">
+    <div class="form-group">
+      <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <input formControlName="charity_name" matInput type="text" placeholder="Charity Name">
+    <mat-icon matSuffix>person_outline</mat-icon>
+    <mat-label *ngIf="updatecharityform.get('charity_name').hasError('required') && !updatecharityform.get('charity_name').pristine ">Name
+      is required.</mat-label>
+      <mat-label *ngIf="updatecharityform.get('charity_name').hasError('pattern') && !updatecharityform.get('charity_name').pristine ">Name
+        should allow only characters.</mat-label>
+     <mat-label *ngIf="updatecharityform.get('charity_name').hasError('minlength') && !updatecharityform.get('charity_name').pristine ">Name
+      must have minimum 3 characters.</mat-label>
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <input formControlName="location" matInput type="text" placeholder="Charity Location">
+    <mat-label *ngIf="updatecharityform.get('location').hasError('required') && !updatecharityform.get('location').pristine ">Location
+      is required.</mat-label>
+      <mat-label *ngIf="updatecharityform.get('location').hasError('pattern') && !updatecharityform.get('location').pristine ">Location
+        should allow only characters.</mat-label>
+      <mat-label *ngIf="updatecharityform.get('location').hasError('minlength') && !updatecharityform.get('location').pristine ">Location
+        must have minimum 3 characters.</mat-label>
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <span matPrefix>+91 &nbsp;</span>
+    <input formControlName="contact_info" type="text" matInput appPhone placeholder="Charity Mobile Number">
+    <mat-icon matSuffix>phone</mat-icon>
+
+    <mat-label *ngIf="updatecharityform.get('contact_info').hasError('maxlength') && !updatecharityform.get('contact_info').pristine ">Enter Appropriate
+      length of mobile number.</mat-label>
+     <mat-label *ngIf="updatecharityform.get('contact_info').hasError('pattern') && !updatecharityform.get('contact_info').pristine ">Only number.</mat-label>
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+  <mat-form-field class="example-full-width">
+    <input formControlName="email_id" matInput type="text" placeholder="Charity email address">
+    <mat-label *ngIf="updatecharityform.get('email_id').hasError('required') && !updatecharityform.get('email_id').pristine ">Email id
+      is required.</mat-label>
+    <mat-label *ngIf="updatecharityform.get('email_id').hasError('email') && !updatecharityform.get('email_id').pristine ">Invalid Email.</mat-label>
+  </mat-form-field>
+  </div>
+  <!-- <div class="rows">
+    <div class="col-md-4">
+       <button class="example-full-width" type="submit" [disabled]="!f.valid" mat-raised-button color="primary"
+        style="border-radius: 20px;background-color:purple;">Save</button>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary"
+      style="border-radius: 20px;background-color: green;">Cancel</button>
+    </div>
+  </div> -->
+  <div class="row">
+
+    <div class="col-md-4">
+      <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:#4169E1;"><b>Save</b></button>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: #00FFFF;"><b>Cancel</b></button>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+
+  <!-- <button class="example-full-width" [disabled]="!f.valid" type="submit" mat-raised-button color="primary">Update Charity</button>
+  <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary">Cancle</button> -->

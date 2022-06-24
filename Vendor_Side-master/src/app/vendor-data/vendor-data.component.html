@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="rows">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="text-align: center; font-size: 25px;">Order Management</div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="rows">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+      <!-- <button mat-raised-button color="primary" (click)="onAddRecord()"
+              style="font-size: 20px; background-color:#4169E1; border-radius: 20px;">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Order-to-vendor
+            </button> -->
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<!-- <button mat-raised-button color="primary" (click)="onAddRecord()" style=" margin-right: 1.0em">+ Add Order to Vendor</button>
+      <button mat-raised-button color="primary" (click)="onDeleteAllClick()" style=" margin-right: 1.0em" >Delete All</button>
+      <button mat-raised-button color="primary" (click)="onAllRecord()" style=" margin-right: 1.0em">All Data</button>
+      <button mat-raised-button color="primary" (click)="onDeliveredClick()" style=" margin-right: 1.0em">Delivered</button>
+      <button mat-raised-button color="primary" (click)="onNotDeliveredClick()" >Not Delivered</button>-->
+
+<div class="container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Stock">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort multiTemplateDataRows>
+
+    <ng-container matColumnDef="order_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ORDER NAME </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.order_name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="qty">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> QUANTITY </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.qty}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.date| slice : 0 : 10}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PRICE </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="special_instruction">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Instruction </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.special_instruction}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> ACTION </th>
+      <td mat-cell *matCellDef="let row">
+        <button (click)="onEdit(row)" mat-mini-fab color="basic" aria-label="Example icon-button with a heart icon">
+          <mat-icon>edit</mat-icon>
+        </button>&nbsp;&nbsp;
+        <button (click)="onDone(row)" mat-mini-fab color="primary" aria-label="Example icon-button with a heart icon">
+          <mat-icon>done</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5,10, 25, 50, 100]"></mat-paginator>
+</div>

@@ -1,0 +1,89 @@
+<form [formGroup]="updatecategoryform" (ngSubmit)="onupdatecategory(f)" #f="ngForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Update Category</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h5 style="color: red;">* Means the field is mandatary.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group">
+        <div class="example-container">
+          <mat-form-field class="example-full-width">
+            <!-- <input name="CategoryNAME" matInput placeholder="Category Name" value="" [(ngModel)]="catname" spellcheck="false" autocomplete="off"> -->
+            <input formControlName="cat_name" matInput type="text" required placeholder="Category Name" spellcheck="false" autocomplete="off">
+            <mat-label *ngIf="updatecategoryform.get('cat_name').hasError('required') && !updatecategoryform.get('cat_name').pristine ">Category name
+            is required.</mat-label>
+            <mat-label *ngIf="updatecategoryform.get('cat_name').hasError('pattern') && !updatecategoryform.get('cat_name').pristine ">Category name
+             allows character</mat-label>
+            <mat-label *ngIf="updatecategoryform.get('cat_name').hasError('minlength') && !updatecategoryform.get('cat_name').pristine ">Category name
+            should have 3 minimum characters.</mat-label>
+          </mat-form-field>
+        </div>
+        <!-- <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-sm-7">
+              <mat-label><b>Category image:</b></mat-label>
+              <div class="form-control">
+
+                <mat-card>
+                  <img mat-card-image src="{{categoryPhotoUrl}}" style="height: 150px;width: 250px;">
+                </mat-card>
+
+                <input type="file" (change)="onChange($event)" formControlName="Image">
+              </div>
+
+            </div>
+          </div>
+        </div>-->
+        <div class="container">
+          <mat-label><b>Category Image </b></mat-label>
+
+            <div class="row">
+              <div class="col-md-3">
+                <img src="{{categoryPhotoUrl}}" height="100px:" width="100px">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6 col-sm-7">
+
+                <div class="form-control">
+                  <input type="file" (change)="onChange($event)" formControlName="Image">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 col-sm-2"></div>
+        <div class="col-md-3 col-sm-3">
+          <button type="submit" [disabled]="!f.valid" mat-raised-button class="btn-primary form-control" style="border-radius: 20px;background-color:#4169E1;"><b>Save</b></button>
+        </div>
+        <div class="col-md-1 col-sm-2"></div>
+      <div class="col-md-3 col-sm-3">
+          <button mat-raised-button class="btn-success form-control" (click)="onBackToPage()" style="border-radius: 20px;background-color: #00FFFF;"><b>Cancel</b></button>
+        </div>
+      </div>
+    <!-- <div class="rows">
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-3 col-sm-3">
+        <button class="example-full-width" type="submit" [disabled]="!f.valid" mat-raised-button color="primary"
+        style="border-radius: 20px;background-color:purple">Update</button>
+      </div>
+      <div class="col-md-1 col-sm-2"></div>
+      <div class="col-md-3 col-sm-3">
+        <button class="example-full-width" (click)="onBackToPage()" mat-raised-button color="primary"
+        style="border-radius: 20px;background-color:green;">Cancel</button>
+      </div> -->
+
+  </form>
+
+

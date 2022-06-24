@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="rows">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="text-align: center; font-size: 25px;">Order Details Management</div>
+  </div>
+  <br>
+  <br>
+  <br>
+  </div>
+<!-- <button mat-raised-button color="primary" (click)="onDeleteAllClick()"  >Delete All</button> -->
+<div class="container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Order Details">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort multiTemplateDataRows>
+
+    <ng-container matColumnDef="order_details_id">
+      <th mat-header-cell *matHeaderCellDef >ALL</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (change)="onCheckBoxChange(row)" color="warn"></mat-checkbox>
+      </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="order_details_id">
+      <th mat-header-cell *matHeaderCellDef > </th>
+      <td mat-cell *matCellDef="let row">
+      <input type="checkbox" (change)="onCheckBoxChange(row)" >
+      </td>
+    </ng-container> -->
+    <ng-container matColumnDef="table_no">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> TABLE NO </th>
+      <td mat-cell *matCellDef="let row"> {{row.table_no}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PRODUCT NAME </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PRICE </th>
+      <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="qty">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> QUANTITY </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.qty}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="discription">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPTION </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.discription}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> ACTION </th>
+      <td mat-cell *matCellDef="let row">
+        <button (click)="onDelete(row)" mat-mini-fab color="primary" >
+          <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+        </button>&nbsp;&nbsp;
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5,10, 25, 100]"></mat-paginator>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-5">
+      <button mat-raised-button style="font-size: 20px; background-color: #4169E1;" [disabled]="del_arr.length==0" (click)="onDeleteAllClick()">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+      </button>
+    </div>
+  </div>
+</div>

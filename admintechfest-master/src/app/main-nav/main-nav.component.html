@@ -1,0 +1,54 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+      <img style="margin-left: 20px; align-items: center;" src="../../assets/1.png" height="115px" width="130px">
+      <h5 style="text-align:center">Welcome<br>{{email_id}}</h5>
+      <mat-divider></mat-divider>
+    <mat-nav-list>
+      <!-- <a mat-list-item routerLink="/nav/signup"><i class="fal fa-sign-in"></i>signup</a> -->
+      <a mat-list-item routerLink="/nav/home"><mat-icon>dashboard</mat-icon>Dash Board</a>
+      <a mat-list-item routerLink="/nav"><i class="fa fa-user" aria-hidden="true"></i>User</a>
+      <a mat-list-item routerLink="/nav/category"><i class="fa fa-list-alt" aria-hidden="true"></i>Category</a>
+      <a mat-list-item routerLink="/nav/menu"><i class="fas fa-utensils"></i>Menu Items</a>
+      <a mat-list-item routerLink="/nav/stock"><i><mat-icon>restaurant_menu</mat-icon></i>Ingredients</a>
+      <!-- <a mat-list-item routerLink="/nav/cart"><i class="fas fa-shopping-cart"></i>Cart</a> -->
+      <a mat-list-item routerLink="/nav/order"><i><mat-icon>shopping_cart</mat-icon></i>Order</a>
+      <!-- <a mat-list-item routerLink="/nav/order_detail"><i class="fas fa-ballot-check"></i>Order Detail</a> -->
+      <a mat-list-item routerLink="/nav/charity"><i class="fas fa-hands-helping"></i>Charity</a>
+      <a mat-list-item routerLink="/nav/vendor"><i class="fas fa-user-tie"></i>Vendor</a>
+      <a mat-list-item routerLink="/nav/ordertovendor"><i class="fas fa-ballot-check"></i>Order to Vendor</a>
+      <a mat-list-item routerLink="/nav/feedback"><i class="far fa-comment"></i>FeedBack</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Tech Feast</span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <a mat-list-item (click)="onviewProfile()"><i class="fa fa-user-circle" aria-hidden="true"></i>VIEW PROFILE</a>
+        </button>
+        <button mat-menu-item>
+          <a mat-list-item (click)="onLogoutClick()"><i class="fad fa-sign-out"></i>LOG OUT</a>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
